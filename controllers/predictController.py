@@ -8,9 +8,9 @@ import pandas as pd
 import tensorflow as tf
 import numpy as np
 
-label_encoder = joblib.load('./Triage Model/assets/label_encoder_ESI.pkl')
-robustScaler = joblib.load('./Triage Model/assets/robust_scaler.pkl')
-model = tf.keras.models.load_model('./Triage Model/assets/model_ESI.h5')
+label_encoder = joblib.load('./Triage Model/LabelEncoder.pkl')
+robustScaler = joblib.load('./Triage Model/RobustScaler.pkl')
+model = tf.keras.models.load_model('./Triage Model/Model.h5')
 
 def index():
     return {'status': 'OK',}
@@ -22,6 +22,7 @@ def predict():
     return {"result": predict[0]}
 
 def loadModel(data):
+    print("old")
     numerical_columns = ['age', 'triage_vital_hr', 'triage_vital_sbp', 'triage_vital_dbp', 'triage_vital_rr', 'triage_vital_o2', 'triage_vital_temp']
 
     custome_input = pd.DataFrame(data)
