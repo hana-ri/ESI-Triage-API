@@ -1,0 +1,16 @@
+[Unit]
+Description=Gunicorn instance to serve myapp
+After=network.target
+
+[Service]
+User=yourusername
+Group=www-data
+WorkingDirectory=/home/rizal.han21/triage-api
+ExecStart=/home/rizal.han21/.local/bin/gunicorn --workers 2 --bind 0.0.0.0:8000 myapp:app
+
+[Install]
+WantedBy=multi-user.target
+
+# langkah jalanin gunicorn
+gunicorn --workers 2 --bind 0.0.0.0:8000 app:app &
+sudo nano /etc/systemd/system/sample_flask_app.service
